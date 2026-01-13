@@ -1,0 +1,15 @@
+name: Daily Bot
+on:
+  schedule:
+    - cron: '0 0 * * *' # 한국시간 매일 오전 9시 실행
+  workflow_dispatch:      # 수동 실행 버튼
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - run: pip install -r requirements.txt
+      - run: python main.py
